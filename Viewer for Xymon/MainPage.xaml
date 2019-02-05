@@ -2,12 +2,1026 @@
     x:Class="Viewer_for_Xymon.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Viewer_for_Xymon"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:local="using:Viewer_for_Xymon"
+    xmlns:Grid="using:Telerik.UI.Xaml.Controls.Grid"
+    xmlns:Grid1="using:Telerik.Data.Core"
+    xmlns:telPrim="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:telCore="using:Telerik.Core"
+    xmlns:GridCommands="using:Telerik.UI.Xaml.Controls.Grid.Commands"
+    xmlns:telControlsData="using:Telerik.UI.Xaml.Controls.Data"
+    xmlns:telControlsInput="using:Telerik.UI.Xaml.Controls.Input"
+    xmlns:gridPrimitives="using:Telerik.UI.Xaml.Controls.Grid.Primitives"
+    
+    
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <local:CustomBackgroundSelector x:Name="selector"/>
+        
+        <local:CellBackgroundSelector x:Key="CellBgSelector">
+            <local:CellBackgroundSelector.BgRed>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#f1937a"/>
+                </Style>
+            </local:CellBackgroundSelector.BgRed>
+            <local:CellBackgroundSelector.BgYellow>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#fee599"/>
+                </Style>
+            </local:CellBackgroundSelector.BgYellow>
+            <local:CellBackgroundSelector.BgPurple>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#b2a1c7"/>
+                </Style>
+            </local:CellBackgroundSelector.BgPurple>
+            <local:CellBackgroundSelector.BgClear>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#d3d3d3"/>
+                </Style>
+            </local:CellBackgroundSelector.BgClear>
+            <local:CellBackgroundSelector.BgBlue>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#9cc3e5"/>
+                </Style>
+            </local:CellBackgroundSelector.BgBlue>
+            <local:CellBackgroundSelector.BgGreen>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#a8d08d"/>
+                </Style>
+            </local:CellBackgroundSelector.BgGreen>
+            <local:CellBackgroundSelector.BgGrey>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="LightGray"/>
+                </Style>
+            </local:CellBackgroundSelector.BgGrey>
+        </local:CellBackgroundSelector>
 
+        <local:UpdateColorSelector x:Key="UpdateColorSelectorKey">
+            <local:UpdateColorSelector.BgRed>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#f1937a"/>
+                </Style>
+            </local:UpdateColorSelector.BgRed>
+            <local:UpdateColorSelector.BgYellow>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#fee599"/>
+                </Style>
+            </local:UpdateColorSelector.BgYellow>
+            <local:UpdateColorSelector.BgPurple>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#b2a1c7"/>
+                </Style>
+            </local:UpdateColorSelector.BgPurple>
+            <local:UpdateColorSelector.BgClear>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#d3d3d3"/>
+                </Style>
+            </local:UpdateColorSelector.BgClear>
+            <local:UpdateColorSelector.BgBlue>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#9cc3e5"/>
+                </Style>
+            </local:UpdateColorSelector.BgBlue>
+            <local:UpdateColorSelector.BgGreen>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="#a8d08d"/>
+                </Style>
+            </local:UpdateColorSelector.BgGreen>
+            <local:UpdateColorSelector.BgGrey>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Fill" Value="LightGray"/>
+                </Style>
+            </local:UpdateColorSelector.BgGrey>
+        </local:UpdateColorSelector>
+
+
+        <local:CellStyleSelector x:Key="FontSelector">
+            <local:CellStyleSelector.NormalFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="3,4,3,4"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellStyleSelector.NormalFont>
+            <local:CellStyleSelector.BoldFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="3,6,3,6"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellStyleSelector.BoldFont>
+            <local:CellStyleSelector.ItalicFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="FontStyle" Value="Italic"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="3,6,3,6"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellStyleSelector.ItalicFont>
+        </local:CellStyleSelector>
+
+        <local:CellColorSelector x:Key="FontColorSelector">
+            <local:CellColorSelector.RedFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#f1937a"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="8,10,8,10"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellColorSelector.RedFont>
+            <local:CellColorSelector.YellowFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#fee599"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="8,10,8,10"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellColorSelector.YellowFont>
+            <local:CellColorSelector.BlueFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#9cc3e5"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="8,10,8,10"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellColorSelector.BlueFont>
+            
+            <local:CellColorSelector.BlackFont>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="8,10,8,10"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </local:CellColorSelector.BlackFont>
+        </local:CellColorSelector>
+
+
+        <Style x:Key="RightAlignAppBarButton" TargetType="AppBarButton">
+            <Setter Property="Background" Value="{ThemeResource AppBarButtonBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource AppBarButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource AppBarButtonBorderBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="AllowFocusOnInteraction" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Grid x:Name="Root" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" MaxWidth="{TemplateBinding MaxWidth}" MinWidth="{TemplateBinding MinWidth}">
+                            <Grid.Resources>
+                                <Style x:Name="LabelOnRightStyle" TargetType="AppBarButton">
+                                    <Setter Property="Width" Value="NaN"/>
+                                </Style>
+                            </Grid.Resources>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <!--<VisualState x:Name="Compact">
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualState>-->
+                                    <VisualState x:Name="LabelOnRight">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="12,14,0,14"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="MinHeight" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarThemeCompactHeight}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="TextAlignment" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Left"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="8,15,12,17"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="LabelCollapsed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="MinHeight" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarThemeCompactHeight}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Overflow">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="OverflowWithToggleButtons">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="38,0,12,0"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowTextLabel"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="InputModeStates">
+                                    <VisualState x:Name="InputModeDefault"/>
+                                    <VisualState x:Name="TouchInputMode">
+                                        <VisualState.Setters>
+                                            <Setter Target="OverflowTextLabel.Padding" Value="0,0,0,0"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="GameControllerInputMode">
+                                        <VisualState.Setters>
+                                            <Setter Target="OverflowTextLabel.Padding" Value="0,0,0,0"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="ContentRoot" MinHeight="{ThemeResource AppBarThemeMinHeight}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" Height="48" VerticalAlignment="Center" Margin="14,0" Padding="0,0,0,10"/>
+                                <TextBlock x:Name="TextLabel" Foreground="{TemplateBinding Foreground}" FontSize="17" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,0" Padding="0,0,0,12" Grid.Row="0" Grid.Column="1" TextAlignment="Center" TextWrapping="Wrap" Text="{TemplateBinding Label}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock x:Name="OverflowTextLabel" Foreground="{TemplateBinding Foreground}" FontSize="15" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Stretch" Margin="12,0,12,0" Padding="0,0,12,0" TextAlignment="Left" TextWrapping="NoWrap" Text="{TemplateBinding Label}" TextTrimming="Clip" Visibility="Collapsed" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AppBarToggleButtonLabelRight" TargetType="AppBarToggleButton">
+            <Setter Property="Background" Value="{ThemeResource AppBarToggleButtonBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource AppBarToggleButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource AppBarToggleButtonBorderBrush}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Width" Value="68"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="AllowFocusOnInteraction" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarToggleButton">
+                        <Grid x:Name="Root" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" MaxWidth="{TemplateBinding MaxWidth}" MinWidth="{TemplateBinding MinWidth}">
+                            <Grid.Resources>
+                                <Style x:Name="LabelOnRightStyle" TargetType="AppBarToggleButton">
+                                    <Setter Property="Width" Value="NaN"/>
+                                </Style>
+                            </Grid.Resources>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ApplicationViewStates">
+                                    <VisualState x:Name="FullSize"/>
+                                    <!--<VisualState x:Name="Compact">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>-->
+                                    <VisualState x:Name="LabelOnRight">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="12,14,0,14"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="MinHeight" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarThemeCompactHeight}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="TextAlignment" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Left"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="8,15,12,17"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="LabelCollapsed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="MinHeight" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarThemeCompactHeight}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Overflow">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ContentRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="AccentOverlayBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundHighLightOverlayPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="AccentOverlayBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundHighLightOverlayPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushChecked}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundChecked}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundChecked}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundChecked}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="AccentOverlayBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundHighLightOverlayCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundCheckedPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="AccentOverlayBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundHighLightOverlayCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundCheckedPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="OverflowContentRoot"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedDisabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBorderBrushCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="Content">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="TextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonForegroundCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckGlyphForegroundCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonBackgroundCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckedHighlightBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="OverflowCheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="OverflowTextLabel">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonOverflowLabelForegroundCheckedDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="InputModeStates">
+                                    <VisualState x:Name="InputModeDefault"/>
+                                    <VisualState x:Name="TouchInputMode">
+                                        <VisualState.Setters>
+                                            <Setter Target="OverflowTextLabel.Padding" Value="0,11,0,13"/>
+                                            <Setter Target="OverflowCheckGlyph.Margin" Value="12,12,12,12"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="GameControllerInputMode">
+                                        <VisualState.Setters>
+                                            <Setter Target="OverflowTextLabel.Padding" Value="0,11,0,13"/>
+                                            <Setter Target="OverflowCheckGlyph.Margin" Value="12,12,12,12"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="CheckedHighlightBackground" Fill="{ThemeResource AppBarToggleButtonBackgroundChecked}" Opacity="0"/>
+                            <Rectangle x:Name="AccentOverlayBackground" Fill="{ThemeResource AppBarToggleButtonBackgroundHighLightOverlay}"/>
+                            <Grid x:Name="ContentRoot" MinHeight="{ThemeResource AppBarThemeMinHeight}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!--<Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>-->
+                                <ContentPresenter x:Name="Content" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch" Height="48" Margin="14,0" VerticalAlignment="Center" Padding="0,0,0,10"/>
+                                <TextBlock x:Name="TextLabel" Foreground="{TemplateBinding Foreground}" FontSize="17" FontFamily="{TemplateBinding FontFamily}" Margin="0,0,0,0" Padding="0,0,0,12" Grid.Row="0" Grid.Column="1" TextAlignment="Left" TextWrapping="Wrap" Text="{TemplateBinding Label}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Grid x:Name="OverflowContentRoot">
+                                <TextBlock x:Name="OverflowCheckGlyph" Foreground="{ThemeResource AppBarToggleButtonCheckGlyphForeground}" FontSize="16" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Left" Height="14" Margin="12,6,12,6" Opacity="0" Text="&#xE73E;" Visibility="Collapsed" VerticalAlignment="Center" Width="14"/>
+                                <TextBlock x:Name="OverflowTextLabel" Foreground="{TemplateBinding Foreground}" FontSize="15" FontFamily="{TemplateBinding FontFamily}" HorizontalAlignment="Stretch" Margin="12,0,12,0" Padding="0,5,0,7" TextAlignment="Left" TextWrapping="NoWrap" Text="{TemplateBinding Label}" TextTrimming="Clip" Visibility="Collapsed" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="ToolBarRowDef" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#ffc6c6c6" Grid.Column="0">
+            <!--<AppBarToggleButton x:Name="HamburgerBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="60" Background="Transparent" Click="HamburgerBtn_Tapped"/>-->
+            <AppBarButton x:Name="HamburgerBtn"  Padding="24,0,0,0" Width="48" Height="60" Background="Transparent"    Click="HamburgerBtn_Tapped"   Icon="ShowBcc" AccessKey="§" />
+            <AppBarToggleButton x:Name="toggleRed" Icon="Important" Label="Critical" Checked="ToggleRedOn" Unchecked="ToggleRedOff" RequestedTheme="Light" IsCompact="True"  RightTapped="GetBacklog" MaxWidth="58" AccessKey="1">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FFf1937a"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleYellow" Icon="View" Label="Warning"  Checked="ToggleYellowOn" Unchecked="ToggleYellowOff" RequestedTheme="Light" IsCompact="True" RightTapped="GetBacklog" MaxWidth="58" AccessKey="2">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FFfee599"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="togglePurple" Icon="Clock" Label="Expired"  Checked="TogglePurpleOn" Unchecked="TogglePurpleOff" RequestedTheme="Light" IsCompact="True" RightTapped="GetBacklog" MaxWidth="58" AccessKey="3">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FFb2a1c7"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleClear" Icon="Link" Label="Clear"  Checked="ToggleClearOn" Unchecked="ToggleClearOff" RequestedTheme="Light" IsCompact="True" RightTapped="GetBacklog" MaxWidth="58" AccessKey="4">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="GhostWhite"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleBlue" Icon="Mute" Label="Disabled"  RequestedTheme="Light" IsCompact="True" MaxWidth="58"
+                                Checked="ToggleBlueOn" Unchecked="ToggleBlueOff" RightTapped="GetBacklog" AccessKey="5">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FF9CC3E5"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleManualBlue" Icon="BlockContact" Label="By user"  RequestedTheme="Light" IsCompact="True" MaxWidth="58"
+                                Checked="ToggleManualBlueOn" Unchecked="ToggleManualBlueOff" RightTapped="GetBacklog" AccessKey="6">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FF9CC3E5"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleGreen" Icon="Like" Label="OK"  RequestedTheme="Light" IsCompact="True" MaxWidth="58"
+                                Checked="ToggleGreenOn" Unchecked="ToggleGreenOff" RightTapped="GetBacklog" AccessKey="7">
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="#FFa8d08d"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarToggleButton x:Name="toggleAck" Icon="Accept" Label="Acked" Checked="ToggleAckOn" Unchecked="ToggleAckOff" MaxWidth="58" Visibility="Collapsed" >
+                <AppBarToggleButton.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="AppBarToggleButtonForegroundChecked" Color="White"/>
+                                <SolidColorBrush x:Key="AppBarToggleButtonBackgroundChecked" Color="Black"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </AppBarToggleButton.Resources>
+            </AppBarToggleButton>
+
+            <AppBarSeparator MaxWidth="32"/>
+            <AppBarButton x:Name="SelectAllBtn" Icon="SelectAll" Label="All" Tapped="SelectAllBtnTapped"  IsEnabled="True" IsCompact="True" MaxWidth="58" AccessKey="A" AccessKeyInvoked="SelectAllBtnTapped"/>
+            <AppBarToggleButton x:Name="ToggleMultiBtn" Icon="ViewAll" Label="Multi"  Checked="ToggleMultiOn" Unchecked="ToggleMultiOff" IsCompact="True" MaxWidth="58" AccessKey="S"/>
+            <AppBarButton x:Name="ClearSelectionBtn" Icon="ClearSelection" Label="Clear" Tapped="ClearSelectionBtn_Tapped" IsCompact="True" MaxWidth="58" AccessKey="C" AccessKeyInvoked="ClearSelectionBtn_Tapped" Visibility="Visible"/>
+            <AppBarSeparator MaxWidth="32"/>
+            <AppBarButton x:Name="AckBtn" Icon="Accept" Label="Ack" Tapped="OpenAckDialog" IsCompact="True" MaxWidth="58" AccessKey="K" AccessKeyInvoked="OpenAckDialog"/>
+            <AppBarButton x:Name="DisableBtn"  Icon="Mute" Label="Disable" Tapped="OpenDisableDialog" IsCompact="True" MaxWidth="58" AccessKey="D" AccessKeyInvoked="OpenDisableDialog"/>
+            <!--<AppBarButton x:Name="CropBtn"  Icon="Crop" Label="Crop" Tapped="CropBtn_Tapped" RightTapped="CropBtn_RightTapped" IsCompact="True" MaxWidth="58" AccessKey="G" AccessKeyInvoked="CropBtn_RightTapped"/>-->
+
+            
+
+        </StackPanel>
+        <AppBarToggleButton x:Name="toggleDrawerSide" Icon="DockRight" Label="Lock pane" IsCompact="True" Width="48" Height="48" Checked="ToggleLockOn" Unchecked="ToggleLockOff" AccessKey="L" HorizontalAlignment="Right" Grid.Column="1"/>
+        
+        <Grid Grid.Row="1" Height="Auto" >
+            <SplitView x:Name="HamburgerPane" IsPaneOpen="False" DisplayMode="Overlay" OpenPaneLength="180" PanePlacement="Left"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+                <SplitView.Pane>
+                    
+                        <Grid>
+                        <StackPanel Background="#ffc6c6c6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="DimGray" BorderThickness="1" Orientation="Vertical" >
+
+                         <AppBarButton Icon="Setting" Label="Settings"  Width="192" Height="48" Tapped="SettingsBtn_Tapped" Style="{StaticResource RightAlignAppBarButton}"
+                                          VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                            
+                        
+                            
+                        <!--<TextBlock x:Name="Heading_selection" Margin="0,0,0,0" HorizontalAlignment="Center"  TextAlignment="Right" Text="Selection"/>-->
+                        <AppBarButton x:Name="enableBtn" Icon="Volume" Label="Enable selected" Tapped="enableBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                        
+                        
+
+                        <!--<TextBlock x:Name="Heading_view" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Right" Text="View"/>-->
+                                                
+                        <AppBarToggleButton x:Name="toggleNoProp" Icon="Add" Label="NoProp"  Checked="toggleNoProp_Checked" Unchecked="toggleNoProp_Unchecked"  Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                        <AppBarToggleButton x:Name="toggleNoBb2" Icon="Add" Label="NoNonGreen" Checked="toggleNoBb2_Checked" Unchecked="toggleNoBb2_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+
+                            <TextBlock x:Name="Heading_filter" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Right" Text="Filter"/>
+                            <AppBarButton x:Name="ResetFiltersBtn" Icon="Cancel" Label="Reset" Tapped="ResetFiltersBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                            <AppBarToggleButton x:Name="myAcksBtn" Icon="Filter" Label="My acks" Checked="myAcks_Checked" Unchecked="myAcks_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                            <AppBarToggleButton x:Name="preDef1" Icon="Page" Label="preDef1" Checked="preDef1_Checked" Unchecked="preDef1_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" Visibility="Collapsed"/>
+
+                            
+
+
+                            <TextBlock x:Name="Heading_debug" Margin="0,20,0,0" HorizontalAlignment="Center"  TextAlignment="Right" Text="Debug"/>
+                            <AppBarButton x:Name="RefreshSelectedBtn" Icon="Refresh" Label="Refresh selected" Tapped="RefreshSelectedBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                            <AppBarButton x:Name="CropBtn" Icon="Crop" Label="Crop selected" Tapped="CropBtn_Tapped" RightTapped="CropBtn_RightTapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                            <AppBarButton x:Name="CacheBtn" Icon="Copy" Label="Cache" Tapped="CacheBtn_Tapped" RightTapped="CacheBtn_RightTapped" Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                            <AppBarToggleButton x:Name="togglePause" Icon="Pause" Label="Pause" Checked="TogglePauseOn" Unchecked="TogglePauseOff"  Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                            <AppBarButton x:Name="ClearBtn" Icon="Cancel" Label="Clear" HorizontalAlignment="Stretch" Tapped="ClearViewBtn" Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top"  Margin="0,0,0,0"/>
+
+                            <AppBarButton Icon="Help" Label="About" Width="192" Height="48" Tapped="ShowHelp" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  Margin="0,20,0,0"/>
+
+                        </StackPanel>
+                        </Grid>
+                    
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <SplitView x:Name="SplitMain"  IsPaneOpen="False" DisplayMode="CompactOverlay" OpenPaneLength="738" PanePlacement="Right" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                        <SplitView.Pane>
+                            <StackPanel Orientation="Horizontal" Background="#ffc6c6c6">
+                                <WebView x:Name="webView1" Width="690" HorizontalAlignment="Left"/>
+                                <StackPanel HorizontalAlignment="Right" Width="48">
+                                    
+                                    <AppBarButton x:Name="backBtn" Icon="Back" Label="" Margin="0,0,0,0" Width="48" Height="48" Tapped="backBtn_Tapped" RightTapped="backBtn_RightTapped"/>
+                                    <AppBarButton x:Name="SideStatus" Icon="ThreeBars" Label="Status" Margin="0,12,0,0" Width="48" Tapped="SideStatusBtn" RightTapped="SideStatusSecondary" DoubleTapped="SideStatusDbl" AccessKey="Q" AccessKeyInvoked="SideStatusBtn"/>
+                                    <AppBarButton x:Name="SideHistory" Icon="Calendar" Label="History" Width="48" Tapped="SideHistoryBtn" RightTapped="SideHistorySecondary" DoubleTapped="SideHistoryDbl" AccessKey="W" AccessKeyInvoked="SideHistoryBtn"/>
+                                    <AppBarButton x:Name="docsBtn" Icon="Library" Label="Docs"  Width="48" Tapped="SideDocsBtn" RightTapped="SideDocsDbl" AccessKey="E" AccessKeyInvoked="SideDocsBtn"/>
+                                    <AppBarButton x:Name="caseBtn" Icon="Attach" Label="Case" Width="48" Tapped="SideCaseBtn" RightTapped="SideCaseDbl" AccessKey="R" AccessKeyInvoked="SideCaseBtn"/>
+                                    <AppBarButton x:Name="SideTest" Icon="Find" Label="Test"  Width="48" Tapped="SideTestBtn" RightTapped="SideTestDbl" AccessKey="T" AccessKeyInvoked="SideTestBtn"/>
+                                    <AppBarButton x:Name="SideTrends" Icon="Go" Label="Trends" Width="48"  Tapped="SideTrendsBtn" RightTapped="SideTrendsDbl" AccessKey="Y" AccessKeyInvoked="SideTrendsBtn"/>
+                                    <AppBarButton x:Name="logsBtn" Icon="AlignLeft" Label="Log" Width="48" Tapped="logsBtn_Tapped" RightTapped="logsBtn_RightTapped" AccessKey="U" AccessKeyInvoked="logsBtn_Tapped"/>
+                                    <AppBarButton x:Name="infoBtn" Icon="PreviewLink" Label="Info" Width="48" Tapped="infoBtn_Tapped" RightTapped="infoBtn_RightTapped" AccessKey="I" AccessKeyInvoked="infoBtn_Tapped"/>
+                                    <AppBarButton x:Name="debugBtn" Icon="Emoji" Label="Debug" Width="48" Tapped="debugBtn_Tapped" AccessKey="D" AccessKeyInvoked="debugBtn_Tapped"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </SplitView.Pane>
+                        <SplitView.Content>
+                            <Grid x:Name="DataGridWrapper" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="197*"/>
+                                    <ColumnDefinition Width="427*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid:RadDataGrid x:Name="DataGrid" ItemsSource="{Binding Mode=TwoWay}"  AutoGenerateColumns="False"
+                              Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DarkSlateGray"
+                              UserSortMode="Single" CanUserChooseColumns="True"  UserEditMode="None" UserFilterMode="Auto" 
+                              UserGroupMode="Enabled" GroupPanelPosition="Bottom" SelectionUnit="Row" 
+                              ColumnResizeHandleDisplayMode="None" ColumnDataOperationsMode="Inline"
+                              RowBackgroundSelector="{StaticResource selector}"  
+                              IncrementalLoadingMode="Auto"
+                              SelectionMode="Single"  
+                              FontSize="14" 
+                                
+                              ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                               
+                              GridLinesVisibility="Horizontal" GridLinesBrush="DimGray" GridLinesThickness="1" Grid.ColumnSpan="2">
+
+                                    <Grid:RadDataGrid.Resources>
+                                        <!--<Style TargetType="gridPrimitives:SelectionRegionBackgroundControl">
+                                            <Setter Property="Background" Value="Blue"/>
+                                            <Setter Property="Opacity" Value="0.5"/>
+                                        </Style>-->
+                                        <Style TargetType="gridPrimitives:SelectionRegionBorderControl">
+                                            <Setter Property="BorderBrush" Value="#ff338fff"></Setter>
+                                            <Setter Property="BorderThickness" Value="2"></Setter>
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </Style>
+                                        <Style TargetType="gridPrimitives:SelectionRegionBackgroundControl">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </Style>
+                                        <Style TargetType="gridPrimitives:DataGridCurrencyControl">
+                                            <!--<Setter Property="Background" Value="Green"></Setter>-->
+                                            <!--<Setter Property="BorderBrush" Value="Green"></Setter>
+                                            <Setter Property="BorderThickness" Value="2"></Setter>-->
+                                            <Setter Property="Opacity" Value="0"/>
+                                        </Style>
+                                        <Style TargetType="Grid:RadDataGrid">
+                                            <!--<Setter Property="FontWeight" Value="Normal"></Setter>-->
+                                            <!--<Setter Property="FontSize" Value="15"></Setter>-->
+                                        </Style>
+                                        <Style TargetType="gridPrimitives:DataGridColumnHeader">
+                                            <!--<Setter Property="FontWeight" Value="Bold"></Setter>-->
+                                            <Setter Property="FontSize" Value="12"></Setter>
+                                            <Setter Property="Margin" Value="0,0,0,0"/>
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        </Style>
+                                        <Style TargetType="gridPrimitives:DataGridServicePanel">
+                                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                                            <Setter Property="FontSize" Value="10"></Setter>
+                                        </Style>
+                                        <Style TargetType="gridPrimitives:DataGridFilteringFlyoutApplyFilterButton">
+                                            <!--<Setter Property="FontWeight" Value="Bold"></Setter>-->
+                                            <Setter Property="FontSize" Value="16"></Setter>
+                                        </Style>
+
+                                    </Grid:RadDataGrid.Resources>
+
+                                    <Grid:RadDataGrid.Commands>
+                                        <!--<local:CustomCellTapped/>-->
+                                        <!--<local:CustomCellRightTapped/>-->
+                                        <local:CustomCellDoubleTapped/>
+                                        <!--<local:CustomCellKeyDown/>-->
+                                        <local:CustomCellHoldingCommand/>
+                                    </Grid:RadDataGrid.Commands>
+
+                                    <Grid:RadDataGrid.Columns>
+                                        <!--<Grid:DataGridTimeColumn PropertyName="lastchange_epoch"            Header="Chg_ut" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        <!--<Grid:DataGridTextColumn PropertyName="color"                           Header="Color" SizeMode="Auto" IsVisible="False"  CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        <!--<Grid:DataGridTextColumn PropertyName="previousColor"                   Header="From" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                     
+                                        <!--<Grid:DataGridTimeColumn PropertyName="XMH_NOPROPRED"                      Header="NPred" CanUserFilter="False" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTimeColumn PropertyName="XMH_NOPROPYELLOW"                      Header="NPyel" CanUserFilter="False" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTimeColumn PropertyName="XMH_NOPROPPURPLE"                      Header="NPpur" CanUserFilter="False" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+
+                                        <Grid:DataGridTextColumn PropertyName="stats"                           Header="Count" CanUserFilter="False" SizeMode="Fixed" Width="40" IsVisible="True" CellDecorationStyleSelector="{StaticResource CellBgSelector}" CellContentStyleSelector="{StaticResource FontSelector}"  >
+                                            <Grid:DataGridTextColumn.CellContentStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                </Style>
+                                            </Grid:DataGridTextColumn.CellContentStyle>
+                                        </Grid:DataGridTextColumn>
+
+                                        <Grid:DataGridTextColumn PropertyName="updateTime"                           Header="Update" CanUserFilter="False" SizeMode="Auto" IsVisible="True"  CellDecorationStyleSelector="{StaticResource UpdateColorSelectorKey}" CellContentStyleSelector="{StaticResource FontSelector}">
+                                            <Grid:DataGridTextColumn.CellContentStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="FontStyle" Value="Italic"/>
+                                                    <Setter Property="Margin" Value="3,4,3,4"/>
+                                                </Style>
+                                            </Grid:DataGridTextColumn.CellContentStyle>
+                                        </Grid:DataGridTextColumn>
+
+                                        <Grid:DataGridTimeColumn PropertyName="lastchange"                      Header="Change" CanUserFilter="False" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="flapinfo"                        Header="Flap" CanUserFilter="False" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}"/>
+
+                                        
+
+                                        <Grid:DataGridTextColumn PropertyName="hostname"                        Header="Host" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}"/>
+                                        <Grid:DataGridTextColumn PropertyName="testname"                        Header="Test" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn x:Name="descriptionCol" PropertyName="description"          Header="Description" SizeMode="Stretch" Width="200"  CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        
+                                        <Grid:DataGridTextColumn PropertyName="pageroot"                        Header="Stakeholder" SizeMode="Auto"  CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="pagepath"                        Header="Path" SizeMode="Auto"  IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="XMH_DGNAME"                      Header="Role" SizeMode="Auto"  IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+
+                                        <Grid:DataGridTextColumn PropertyName="ackuser"                         Header="Ack by" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="ackmsg_processed"                Header="Ack msg" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="acktime"                         Header="Ack end" CanUserFilter="False" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+
+                                        <Grid:DataGridTextColumn x:Name="disuserCol" PropertyName="disuser"     Header="Disable by" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn x:Name="dismsgCol"  PropertyName="dismsg_processed"    Header="Disable msg" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn x:Name="disabletimeCol" PropertyName="disabletime" Header="Disable end" CanUserFilter="False" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+
+                                        <Grid:DataGridTextColumn PropertyName="XMH_RAW"                         Header="Tags"  SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <!--<Grid:DataGridTextColumn PropertyName="client"                      Header="Clnt data" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        <!--<Grid:DataGridTextColumn PropertyName="clntstamp"                       Header="Clnt update" CanUserFilter="False" SizeMode="Auto" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        <!--<Grid:DataGridTextColumn x:Name="line1Col" PropertyName="line1"          Header="Description" SizeMode="Stretch" Width="200"  CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        <!--<Grid:DataGridTextColumn PropertyName="msg"                         Header="Status" SizeMode="Fixed" Width="300" IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />-->
+                                        
+                                    </Grid:RadDataGrid.Columns >
+                                </Grid:RadDataGrid>
+                                <TextBox x:Name="cmdTextBox" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="2,0,0,3" TextWrapping="Wrap" Text="" Width="220"  KeyUp="cmdTextBox_KeyUp" Visibility="Collapsed" Opacity="0.9" Background="LightGray"/>
+                                <TextBlock x:Name="CollSizeTextBlock" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,3,17" Text="None" Grid.Column="2" Tapped="CollSizeTextBlock_Tapped"/>
+                                <TextBlock x:Name="UpdateTextBlock" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,3,0" Text="No connection" Grid.Column="2" Tapped="UpdateTextBlock_Tapped"/>
+                            </Grid>
+                        </SplitView.Content>
+                    </SplitView>
+                </SplitView.Content>
+            </SplitView>
+            <Grid x:Name="HelpGrid" Visibility="Collapsed" Tapped="HideHelp">
+                <Border Background="Black" Opacity="0.5" />
+                <TextBlock Text="Toggle status catagories" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,4,0,0" FontStyle="Italic" Foreground="White" />
+                <TextBlock Text="Selection" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="475,4,0,0" FontStyle="Italic" Foreground="White" />
+                <TextBlock Text="Click column title for filters and sorting" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,50,0,0" FontStyle="Italic" Foreground="White" />
+            </Grid>
+            <Grid x:Name="ConsoleGrid" Visibility="Collapsed" Tapped="HideHelp" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  Width="600" Height="400" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,50,40">
+                <Border Background="Black" Opacity="0.5" />
+                <ListView x:Name="ConsoleListView" ItemsSource="{Binding}"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="1,0,0,0" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <TextBlock Text="{x:Bind}" Foreground="White"  FontSize="12" Grid.Column="0" VerticalAlignment="Stretch" Padding="0,0,0,0" Margin="1,0,0,0"  TextWrapping="Wrap" />
+                            <!--<Grid Background="Black" MaxHeight="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{x:Bind}" Foreground="White"  FontSize="12" Grid.Column="0" VerticalAlignment="Stretch" Padding="0,0,0,0" Margin="1,0,0,0" MaxHeight="20" />
+                            </Grid>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <!--<Setter Property="Height" Value="56"/>-->
+                            <Setter Property="MinHeight" Value="1"/>
+                            <Setter Property="Padding" Value="0,0,0,0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
+
+
+
 </Page>

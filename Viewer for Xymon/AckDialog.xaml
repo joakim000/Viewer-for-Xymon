@@ -1,0 +1,106 @@
+﻿<ContentDialog
+    x:Class="Viewer_for_Xymon.AckDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Viewer_for_Xymon"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Grid="using:Telerik.UI.Xaml.Controls.Grid"
+    xmlns:gridPrimitives="using:Telerik.UI.Xaml.Controls.Grid.Primitives"
+    xmlns:gridView="using:Telerik.UI.Xaml.Controls.Grid.View"
+    xmlns:gridCommands="using:Telerik.UI.Xaml.Controls.Grid.Commands"
+    xmlns:TelControls="using:Telerik.UI.Xaml.Controls"
+    xmlns:RadControlPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:RadBusy="using:Telerik.UI.Xaml.Controls.Primitives.BusyIndicator"
+    mc:Ignorable="d"
+    PrimaryButtonText="Acknowledge"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <RadControlPrimitives:RadBusyIndicator x:Name="busyIndicator" Height="300" VerticalAlignment="Bottom" IsActive="False" AnimationStyle="AnimationStyle7" Visibility="Collapsed"  >
+            <TextBlock />
+        </RadControlPrimitives:RadBusyIndicator>
+
+
+    <StackPanel>
+        
+        <Grid >
+            <TextBlock Text="Acknowledge" HorizontalAlignment="Left" FontSize="26" FontWeight="SemiBold" Foreground="DimGray"></TextBlock>
+            <Button x:Name="CopyBtn" Margin="0" Content="Copy list" HorizontalAlignment="Right" VerticalAlignment="Stretch" Tapped="CopyButton_Tapped" ></Button>
+        </Grid>
+
+        <Grid:RadDataGrid x:Name="SelectionGrid" ItemsSource="{Binding targets}" MinHeight="50" MaxHeight="200"
+                                    Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="LightGray"
+                                    UserSortMode="Single" CanUserChooseColumns="False"  UserEditMode="None" UserFilterMode="Disabled" UserGroupMode="Disabled"
+                                     ColumnResizeHandleDisplayMode="None" ColumnDataOperationsMode="Inline"              
+                                     SelectionMode="Single" SelectionUnit="Row"               AutoGenerateColumns="False"
+                                    GridLinesVisibility="Horizontal" GridLinesBrush="DimGray" GridLinesThickness="1" Grid.ColumnSpan="2">
+
+            <Grid:RadDataGrid.Resources>
+                <Style TargetType="gridPrimitives:SelectionRegionBorderControl">
+                    <Setter Property="BorderBrush" Value="#ff338fff"></Setter>
+                    <Setter Property="BorderThickness" Value="2"></Setter>
+                    <Setter Property="Opacity" Value="1"/>
+                </Style>
+                <Style TargetType="gridPrimitives:SelectionRegionBackgroundControl">
+                    <Setter Property="Opacity" Value="1"/>
+                </Style>
+                <Style TargetType="gridPrimitives:DataGridCurrencyControl">
+                    <Setter Property="Opacity" Value="0"/>
+                </Style>
+                <Style TargetType="Grid:RadDataGrid">
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="FontSize" Value="15"/>
+                </Style>
+
+            </Grid:RadDataGrid.Resources>
+            <Grid:RadDataGrid.Columns>
+                <Grid:DataGridTextColumn PropertyName="hostname"   Header="Host" SizeMode="Fixed" Width="250"   CanUserEdit="True"/>
+                <Grid:DataGridTextColumn PropertyName="testname" Header="Test" SizeMode="Stretch"   CanUserEdit="True"/>
+            </Grid:RadDataGrid.Columns>
+        </Grid:RadDataGrid>
+
+
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="CaseBtn" Grid.Column="0" Margin="0" Content="Create case" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Stretch" Tapped="CaseButton_Tapped" />
+            <TextBlock x:Name="CaseText" Grid.Column="1" Margin="0,0,14,0" HorizontalAlignment="Left" VerticalAlignment="Center"  TextAlignment="Right" />
+            <TextBlock x:Name="CaseText2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left" />
+        </Grid>
+
+        <TextBlock Margin="0,20,0,0" TextWrapping="NoWrap" Text="Message" FontWeight="Bold"/>
+        <TextBox x:Name="MessageBox" Text="{Binding message, Mode=TwoWay}" />
+
+        <TextBlock Margin="0,15,0,0" TextWrapping="NoWrap" Text="Duration" FontWeight="Bold"/>
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <RadioButton x:Name="rb1" GroupName="ddRadio" Width="20"  Content="for"  IsChecked="True" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding minutes, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+            <ComboBox x:Name="timeUnitCombo" ItemsSource="{Binding}" VerticalAlignment="Center" Width="100">
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <RadioButton x:Name="rb2" GroupName="ddRadio" Width="20"  Content="until" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <StackPanel>
+                <TimePicker x:Name="timepicker" Width="200" ClockIdentifier="24HourClock"  ></TimePicker>
+                <DatePicker x:Name="datepicker" Width="200" Margin="0,3,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <!--<StackPanel Orientation="Horizontal">
+            <RadioButton GroupName="ddRadio" Width="20" Margin="0,10,0,0" Content="until" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <StackPanel Orientation="Horizontal">
+                <my:RadTimePicker DisplayValueFormat="hm"  DisplayMode="Inline" Height="120" Width="200" SelectorOrder="hm" CalendarClockIdentifier="24HourClock" SelectorHeader=" " >
+                </my:RadTimePicker>
+                <my:RadDatePicker DisplayValueFormat="ymd" DisplayMode="Inline" Height="120" Width="200" SelectorOrder="ymd" ItemCount="0" SelectorHeader=" ">
+                </my:RadDatePicker>
+            </StackPanel>
+        </StackPanel>-->
+
+    </StackPanel>
+    </Grid>
+</ContentDialog>

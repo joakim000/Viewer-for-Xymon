@@ -21,7 +21,11 @@ namespace Viewer_for_Xymon
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
+    //sealed partial class App : Common.BootStrapper
     {
+        //private Settings _settings = new Settings();
+        //public Settings Settings { get => _settings; set => _settings = value; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +34,7 @@ namespace Viewer_for_Xymon
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
         }
 
         /// <summary>

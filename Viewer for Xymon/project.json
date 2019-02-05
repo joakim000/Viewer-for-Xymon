@@ -1,6 +1,9 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+    "Newtonsoft.Json": "10.0.3",
+    "Prism.Windows": "6.3.0",
+    "Telerik.UI.for.UniversalWindowsPlatform": "1.0.0.5"
   },
   "frameworks": {
     "uap10.0.14393": {}

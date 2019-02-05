@@ -1,0 +1,19 @@
+﻿<ContentDialog
+    x:Class="Viewer_for_Xymon.ErrorDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Viewer_for_Xymon"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Error"
+    PrimaryButtonText="Try again"
+    SecondaryButtonText="Open settings"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel>
+        <TextBlock Text="{Binding}" Margin="0,10,0,0" TextWrapping="Wrap"/>
+    </StackPanel>
+
+</ContentDialog>
