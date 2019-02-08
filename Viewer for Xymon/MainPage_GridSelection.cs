@@ -40,16 +40,20 @@ namespace Viewer_for_Xymon
             else docsBtn.IsEnabled = true;
 
             caseBtn.IsEnabled = false;
-            if (f.ackmsg != null && f.ackmsg != "") { 
-                Match m = Regex.Match(f.ackmsg, Settings.casePattern);
-                if (m.Success) caseBtn.IsEnabled = true;
-            }
-            else if (f.dismsg != null && f.dismsg != "")
+            //TODO if (Status.showCaseEnabled)
+            if (Settings.casePattern != null && Settings.casePattern != "" && Settings.showCaseURL != null && Settings.showCaseURL != "")
             {
-                Match m = Regex.Match(f.dismsg, Settings.casePattern);
-                if (m.Success) caseBtn.IsEnabled = true;
+                if (f.ackmsg != null && f.ackmsg != "")
+                {
+                    Match m = Regex.Match(f.ackmsg, Settings.casePattern);
+                    if (m.Success) caseBtn.IsEnabled = true;
+                }
+                else if (f.dismsg != null && f.dismsg != "")
+                {
+                    Match m = Regex.Match(f.dismsg, Settings.casePattern);
+                    if (m.Success) caseBtn.IsEnabled = true;
+                }
             }
-
             if (f.client == "Y") logsBtn.IsEnabled = true;
             else logsBtn.IsEnabled = false;
         }
