@@ -110,12 +110,13 @@ namespace Viewer_for_Xymon
                     c = statusMatch.Groups[2].Value;
                 }
             }
+
             
             if (msg.Length > 0 && Settings.descFiltersDict.TryGetValue(test, out p))
             {
                 p = p.Replace("%COLOR%", c);             //if (test =="http") Debug.WriteLine("Pattern:"+p);
                 try
-                { 
+                {
                     var mColl = Regex.Matches(msg, p);          //if (test == "http") Debug.WriteLine("Matches:" + mColl.Count);
                     int mTotal = mColl.Count;
                     if (mColl.Count > 0)
@@ -163,7 +164,11 @@ namespace Viewer_for_Xymon
                     Status.log(DateTime.Now.ToString("yyMMdd HH:mm:ss") + " " + e);
                 }
             }
-            else d = TextFix.line1(line);
+            else
+            {
+                d = TextFix.line1(line);
+                Debug.WriteLine("No descFilter for test: " + test + "  Total registered descfilters: " + Settings.descFiltersDict.Count);
+            }
             return TextFix.lineWrap(d);
         }
     } 

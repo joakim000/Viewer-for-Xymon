@@ -541,6 +541,7 @@ namespace Viewer_for_Xymon
             //DataGrid.Focus(FocusState.Pointer);
 
             Status.processing = true;
+            Status.processingType = "ManualRefresh";
             Status.processingFullMsg = true;
             foreach (Fount f in selected)
             {

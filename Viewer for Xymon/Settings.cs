@@ -67,8 +67,10 @@ namespace Viewer_for_Xymon
         
         /* Application settings */
         public static int maxRetry = 5;
+        public static int updateInterval = 60000;
+        public static int histLimit = 50;
         public static bool statusRowEpoch = false;
-        public static bool verboseLog = false;
+        public static bool verboseLog = true;
 
         public static List<string> ignoreCols = new List<string>();
         private static string[] defaultIgnoreTags = { "nobb2", "nonongreen" };
@@ -89,7 +91,7 @@ namespace Viewer_for_Xymon
         public static string histPattern = @"NOWRAP>(?<date>\w{3} \w{3} \d{1,2} .{8}) ?\w* (?<year>\d{2,4}).*<\/TD>\r?\n.*(?<link>historylog.sh\?HOST=.*?)"">.*ALT=""(?<color>.*?)"".*\r?\n<TD.*?>(?<duration>.*)<\/TD>";
         public static string ackHistURL = String.Empty; // = "https://opmon.qbs.se/reports/ackhist.html";
         public static string ackHistPattern = String.Empty; // = @"<TR BGCOLOR=#000000>\r?\n.*<FONT COLOR=white>(?<date>\w{3} \w{3} \d{1,2} .{8}) \w+ (?<year>\d{2,4}).*\r?\n<\/FONT><\/TD>\r?\n<TD ALIGN=CENTER BGCOLOR=(?<color>.*)><FONT COLOR=black>(%HOSTNAME%)<\/FONT><\/TD>\r?\n.*<FONT COLOR=white>\s*(%TESTNAME%)\s*<\/FONT><\/TD>\r?\n.*\r?\n.*BGCOLOR=#000033>\s*(?<ackuser>.*)\s*\r?\n<\/TD>\r?\n<TD ALIGN=LEFT>\s*(?<message>(<a href=.*?>)?.*?)\s*<\/";
-        public static int histLimit = 50;
+        
 
         /* Options */
         public static int refreshDelay = 5000;  // (ms) - Time to delay before next refresh

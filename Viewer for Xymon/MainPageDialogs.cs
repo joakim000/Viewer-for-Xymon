@@ -76,10 +76,13 @@ namespace Viewer_for_Xymon
         {
             HamburgerPane.IsPaneOpen = false;
             var sd = new SettingsDialog();
-            if (this.ActualWidth < 900) sd.MaxWidth = this.ActualWidth;
-            else sd.MaxWidth = 900;
-            if (this.ActualHeight < 800) sd.MaxHeight = this.ActualHeight;
-            else sd.MaxHeight = 800;
+            if (this.ActualWidth < 900) sd.Width = this.ActualWidth;
+            else sd.Width = 900;
+            if (this.ActualHeight < 800) sd.Height = this.ActualHeight;
+            else sd.Height = 800;
+
+            sd.FullSizeDesired = true;
+
             //sd.DataContext = sm;
             ContentDialogResult result = await sd.ShowAsync();
             if (result == ContentDialogResult.Primary)
@@ -122,31 +125,31 @@ namespace Viewer_for_Xymon
 
                 if (Settings.pane_debug)
                 {
-                    Heading_debug.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    RefreshSelectedBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    CropBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    CacheBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    togglePause.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    ClearBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //Heading_debug.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //RefreshSelectedBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //CropBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //CacheBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //togglePause.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //ClearBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
                     //// Custom filters, feature in progress. Show/hide with debug for now
                     //Heading_filter.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     //myAcksBtn.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    //preDef1.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    preDef1.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
                 }
                 else
                 {
-                    Heading_debug.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    RefreshSelectedBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    CropBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    CacheBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    togglePause.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    ClearBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //Heading_debug.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //RefreshSelectedBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //CropBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //CacheBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //togglePause.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //ClearBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
                     // Custom filters, feature in progress. Show/hide with debug for now
-                    Heading_filter.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    myAcksBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //Heading_filter.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //myAcksBtn.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     preDef1.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 }
 

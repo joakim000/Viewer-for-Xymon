@@ -246,13 +246,14 @@ namespace Viewer_for_Xymon
 
         public async void updateLoop()
         {
-            await Task.Delay(60000);
+            await Task.Delay(Settings.updateInterval);
             while (true)
             {
                 if (!Status.processing)
                 {
                     //update
                     Status.processing = true;
+                    Status.processingType = "updateLoop";
 
                     string colorScope = " color=";
                     if (toggleRed.IsChecked.Value.Equals(true)) colorScope = colorScope + "red,";
@@ -272,7 +273,7 @@ namespace Viewer_for_Xymon
                     xymonGetAsync(xymonCmd);
 
                     //RefreshColorFilters();
-                    await Task.Delay(60000);
+                    await Task.Delay(Settings.updateInterval);
                 }
                 else
                     await Task.Delay(200);

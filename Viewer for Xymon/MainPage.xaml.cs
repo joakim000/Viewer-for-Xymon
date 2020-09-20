@@ -201,6 +201,7 @@ namespace Viewer_for_Xymon
                 updateLoop();
                 Status.refreshActive = true;
                 startUpdates();
+                if (Settings.cacheOnStart) cacheOnStart();
             }
         }
 
@@ -230,30 +231,9 @@ namespace Viewer_for_Xymon
             DataGrid.SortDescriptors.Clear();
             DataGrid.SortDescriptors.Add(psd);
 
-            if (Settings.cacheOnStart) cacheOnStart();
-
-            //if (Settings.cacheOnStart)
-            //{
-            //    while (true)
-            //    {
-            //        if (Status.processing == true)
-            //        {
-            //            await Task.Delay(100);
-            //        }
-
-            //    }
-            //    Status.processing = true;
-            //    GetCache(-1, "noGreen", false);
-            //    Status.processing = true;
-            //    GetCache(Settings.cacheHours, "green", false);
-            //}
-
-            //Status.processing = true;
-            //string xymonCmd = "xymondboard " + xymonConnect.nonTestsPatternBuilder() + "lastchange>" + refreshScope.ToString() + colorScope + Settings.fields;
-            //xymonGetAsync(xymonCmd);
-
             Status.firstUpdate = true;
             xymonRefresh(colorScope);
+           
         }
 
 

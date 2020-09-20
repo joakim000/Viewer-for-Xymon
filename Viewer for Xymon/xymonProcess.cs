@@ -251,11 +251,13 @@ namespace Viewer_for_Xymon
             try
             {
                 // Update only if logtime updated or acked  
+                // Change 200920: Also if logtime > updatetime
+                // Change 200920: Also if called by refresh selected-button (ManualRefresh)
                 int logtime;
                 if (Int32.TryParse(xymonRow[5], out logtime))
-                    if (f.logtime_epoch >= logtime && xymonRow[7] == "0" )
+                    if (f.logtime_epoch >= logtime && xymonRow[7] == "0" && Status.processingType != "ManualRefresh") 
                     {
-                       //Debug.WriteLine("Logtimecheck: returned unmodified fount");
+                       Debug.WriteLine("Logtimecheck: returned unmodified fount. " + f.hostname + " : " + f.testname + ". Current logtime " + logtime + " prev logtime " + f.logtime_epoch );
                        return f;
                     }        
 
@@ -392,9 +394,11 @@ namespace Viewer_for_Xymon
                 f.stats = TextFix.stats(xymonRow[18]);
                 f.XMH_DGNAME = TextFix.lineWrap(xymonRow[19]);
                 f.XMH_RAW = TextFix.lineWrap(xymonRow[25]);
-                f.description = DescFilter.description(f.color, f.testname, f.line1, f.msg, f.updateColor);
 
-               
+                Debug.WriteLine("Calling .description for " + f.hostname + " " + f.testname);
+                f.description = DescFilter.description(f.color, f.testname, f.line1, f.msg, f.updateColor);
+                Debug.WriteLine("Description for " + f.hostname + " " + f.testname + " : " + f.description);
+
 
 
                 // Process derived props if source changed (or new)
