@@ -3,7 +3,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10",
     "Newtonsoft.Json": "12.0.3",
     "Prism.Windows": "6.3.0",
-    "Telerik.UI.for.UniversalWindowsPlatform": "1.0.2.1"
+    "Telerik.UI.for.UniversalWindowsPlatform": "1.0.1.4"
   },
   "frameworks": {
     "uap10.0.14393": {}

@@ -56,6 +56,7 @@ namespace Viewer_for_Xymon
             disableBtns();
             InitColorFilters();
             DataGrid.UseSystemFocusVisuals = true;
+            DataGrid.SelectionMode = DataGridSelectionMode.Extended;
             //DataGrid.IsSynchronizedWithCurrentItem = false;
 
             setup();

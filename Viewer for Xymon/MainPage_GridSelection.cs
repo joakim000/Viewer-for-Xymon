@@ -54,8 +54,16 @@ namespace Viewer_for_Xymon
                     if (m.Success) caseBtn.IsEnabled = true;
                 }
             }
+
             if (f.client == "Y") logsBtn.IsEnabled = true;
             else logsBtn.IsEnabled = false;
+
+            // Add checks?
+            infoBtn.IsEnabled = true;
+
+            // Add checks?
+            debugBtn.IsEnabled = true;
+
         }
 
         private void disableBtns()
@@ -72,6 +80,9 @@ namespace Viewer_for_Xymon
             SideTrends.IsEnabled = false;
             caseBtn.IsEnabled = false;
             logsBtn.IsEnabled = false;
+
+            infoBtn.IsEnabled = false;
+            debugBtn.IsEnabled = false;
         }
 
         private void DataGrid_SelectionChanged(object sender, DataGridSelectionChangedEventArgs args)

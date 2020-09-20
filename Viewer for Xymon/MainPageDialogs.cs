@@ -81,7 +81,7 @@ namespace Viewer_for_Xymon
             if (this.ActualHeight < 800) sd.MaxHeight = this.ActualHeight;
             else sd.MaxHeight = 800;
             //sd.DataContext = sm;
-            var result = await sd.ShowAsync();
+            ContentDialogResult result = await sd.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
                 DataGrid.FontSize = Settings.textSize;

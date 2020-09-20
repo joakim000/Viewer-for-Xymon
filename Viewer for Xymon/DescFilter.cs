@@ -93,12 +93,12 @@ namespace Viewer_for_Xymon
 
         }
 
-        public static string description(string color, string test, string line, string msg)
+        public static string description(string color, string test, string line, string msg, string updateColor)
         {
             string p; // regex pattern
             string d = String.Empty; // description
             string c = color;
-
+                
             //if (c == "purple") return TextFix.lineWrap(TextFix.line1(line));
             // if (c == "purple") c = "green";
             if (c == "blue" || c == "purple")

@@ -366,12 +366,6 @@ namespace Viewer_for_Xymon
                     f.disabletime = TextFix.convert_utime(xymonRow[8]);
                 f.clntstamp = TextFix.convert_utime(xymonRow[16]);
 
-                // Special processing
-                f.stats = TextFix.stats(xymonRow[18]);
-                f.XMH_DGNAME = TextFix.lineWrap(xymonRow[19]);
-                f.XMH_RAW = TextFix.lineWrap(xymonRow[25]);
-                f.description = DescFilter.description(f.color, f.testname, f.line1, f.msg);
-
                 // updateColor from line1
                 f.updateColor = TextFix.getUpdateColor(f.line1);
 
@@ -392,6 +386,15 @@ namespace Viewer_for_Xymon
                 {
                     f.updateTime = TextFix.getUpdateTime(f.line1);
                 }
+
+
+                // Special processing
+                f.stats = TextFix.stats(xymonRow[18]);
+                f.XMH_DGNAME = TextFix.lineWrap(xymonRow[19]);
+                f.XMH_RAW = TextFix.lineWrap(xymonRow[25]);
+                f.description = DescFilter.description(f.color, f.testname, f.line1, f.msg, f.updateColor);
+
+               
 
 
                 // Process derived props if source changed (or new)

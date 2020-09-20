@@ -221,7 +221,7 @@ namespace Viewer_for_Xymon
         }
         private void ToggleMultiOff(object sender, RoutedEventArgs e)
         {
-            DataGrid.SelectionMode = DataGridSelectionMode.Single;
+            DataGrid.SelectionMode = DataGridSelectionMode.Extended;
             //SelectAllBtn.IsEnabled = false;
         }
 
@@ -525,9 +525,9 @@ namespace Viewer_for_Xymon
         {
 
         }
-        private void SettingsBtn_Tapped(object sender, RoutedEventArgs a)
+        private async void SettingsBtn_TappedAsync(object sender, RoutedEventArgs a)
         {
-            OpenSettingsDialog(sender, a);
+            await OpenSettingsDialog(sender, a);
         }
 
         
