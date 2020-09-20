@@ -525,7 +525,7 @@ namespace Viewer_for_Xymon
         {
 
         }
-        private async void SettingsBtn_TappedAsync(object sender, RoutedEventArgs a)
+        private async void SettingsBtn_Tapped(object sender, RoutedEventArgs a)
         {
             await OpenSettingsDialog(sender, a);
         }
@@ -595,11 +595,11 @@ namespace Viewer_for_Xymon
             toggleDrawerSide.Height = 60;
             List<AppBarToggleButton> toolBarEnum = new List<AppBarToggleButton>
             {
-                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen, toggleAck, ToggleMultiBtn, toggleManualBlue, toggleDrawerSide
+                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen, ToggleMultiBtn, toggleManualBlue, toggleDrawerSide
             };
             List<AppBarButton> toolBarEnum2 = new List<AppBarButton>
             {
-                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn
+                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn, enableBtn
             };
             foreach (AppBarToggleButton btn in toolBarEnum)
             {
@@ -621,11 +621,11 @@ namespace Viewer_for_Xymon
             toggleDrawerSide.Height = 48;
             List<AppBarToggleButton> toolBarEnum = new List<AppBarToggleButton>
             {
-                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen, toggleAck, ToggleMultiBtn, toggleManualBlue, toggleDrawerSide
+                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen, ToggleMultiBtn, toggleManualBlue, toggleDrawerSide
             };
             List<AppBarButton> toolBarEnum2 = new List<AppBarButton>
             {
-                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn
+                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn, enableBtn
             };
             foreach (AppBarToggleButton btn in toolBarEnum)
             {
@@ -674,11 +674,11 @@ namespace Viewer_for_Xymon
             MainGrid.RowDefinitions.First().Height = gl;
             List<AppBarToggleButton> toolBarEnum = new List<AppBarToggleButton>
             {
-                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen, toggleAck, ToggleMultiBtn, toggleDrawerSide
+                toggleRed, toggleYellow, togglePurple, toggleClear, toggleBlue, toggleGreen,  ToggleMultiBtn, toggleDrawerSide
             };
             List<AppBarButton> toolBarEnum2 = new List<AppBarButton>
             {
-                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn
+                SelectAllBtn, ClearSelectionBtn, AckBtn, DisableBtn, CropBtn, enableBtn
             };
             foreach (AppBarToggleButton btn in toolBarEnum)
             {

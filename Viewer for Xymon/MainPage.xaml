@@ -665,7 +665,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Background="#ffc6c6c6" Grid.Column="0">
             <!--<AppBarToggleButton x:Name="HamburgerBtn" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="60" Background="Transparent" Click="HamburgerBtn_Tapped"/>-->
-            <AppBarButton x:Name="HamburgerBtn"  Padding="24,0,0,0" Width="48" Height="60" Background="Transparent"    Click="HamburgerBtn_Tapped"   Icon="ShowBcc" AccessKey="§" />
+            <AppBarButton x:Name="HamburgerBtn"  Padding="24,0,0,0" Width="48"  Background="Transparent"    Click="HamburgerBtn_Tapped" IsCompact="True"   Icon="ShowBcc" AccessKey="§" />
             <AppBarToggleButton x:Name="toggleRed" Icon="Important" Label="Critical" Checked="ToggleRedOn" Unchecked="ToggleRedOff" RequestedTheme="Light" IsCompact="True"  RightTapped="GetBacklog" MaxWidth="58" AccessKey="1">
                 <AppBarToggleButton.Resources>
                     <ResourceDictionary>
@@ -753,7 +753,8 @@
                 </AppBarToggleButton.Resources>
             </AppBarToggleButton>
 
-            <AppBarToggleButton x:Name="toggleAck" Icon="Accept" Label="Acked" Checked="ToggleAckOn" Unchecked="ToggleAckOff" MaxWidth="58" Visibility="Collapsed" >
+            <!--    
+            <AppBarToggleButton x:Name="toggleAck" Icon="Accept" Label="Acked" Checked="ToggleAckOn" Unchecked="ToggleAckOff" MaxWidth="58" IsCompact="True" Visibility="Visible" >
                 <AppBarToggleButton.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.ThemeDictionaries>
@@ -765,7 +766,7 @@
                     </ResourceDictionary>
                 </AppBarToggleButton.Resources>
             </AppBarToggleButton>
-
+            -->
             <AppBarSeparator MaxWidth="32"/>
             <AppBarButton x:Name="SelectAllBtn" Icon="SelectAll" Label="All" Tapped="SelectAllBtnTapped"  IsEnabled="True" IsCompact="True" MaxWidth="58" AccessKey="A" AccessKeyInvoked="SelectAllBtnTapped"/>
             <AppBarToggleButton x:Name="ToggleMultiBtn" Icon="ViewAll" Label="Multi"  Checked="ToggleMultiOn" Unchecked="ToggleMultiOff" IsCompact="True" MaxWidth="58" AccessKey="S"/>
@@ -773,13 +774,16 @@
             <AppBarSeparator MaxWidth="32"/>
             <AppBarButton x:Name="AckBtn" Icon="Accept" Label="Ack" Tapped="OpenAckDialog" IsCompact="True" MaxWidth="58" AccessKey="K" AccessKeyInvoked="OpenAckDialog"/>
             <AppBarButton x:Name="DisableBtn"  Icon="Mute" Label="Disable" Tapped="OpenDisableDialog" IsCompact="True" MaxWidth="58" AccessKey="D" AccessKeyInvoked="OpenDisableDialog"/>
+            <AppBarButton x:Name="enableBtn" Icon="Volume" Label="Enable" Tapped="enableBtn_Tapped"  IsCompact="True" MaxWidth="58"   />
+
             <!--<AppBarButton x:Name="CropBtn"  Icon="Crop" Label="Crop" Tapped="CropBtn_Tapped" RightTapped="CropBtn_RightTapped" IsCompact="True" MaxWidth="58" AccessKey="G" AccessKeyInvoked="CropBtn_RightTapped"/>-->
 
             
 
         </StackPanel>
-        <AppBarToggleButton x:Name="toggleDrawerSide" Icon="DockRight" Label="Lock pane" IsCompact="True" Width="48" Height="48" Checked="ToggleLockOn" Unchecked="ToggleLockOff" AccessKey="L" HorizontalAlignment="Right" Grid.Column="1"/>
+        <AppBarToggleButton x:Name="toggleDrawerSide" Icon="DockRight" Label="Lock" IsCompact="True" Width="48" Height="48" Checked="ToggleLockOn" Unchecked="ToggleLockOff" AccessKey="L" HorizontalAlignment="Right" Grid.Column="1"/>
         
+        <!-- Funktionsmeny vänster sida -->
         <Grid Grid.Row="1" Height="Auto" >
             <SplitView x:Name="HamburgerPane" IsPaneOpen="False" DisplayMode="Overlay" OpenPaneLength="180" PanePlacement="Left"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
                 <SplitView.Pane>
@@ -793,30 +797,31 @@
                         
                             
                         <!--<TextBlock x:Name="Heading_selection" Margin="0,0,0,0" HorizontalAlignment="Center"  TextAlignment="Right" Text="Selection"/>-->
-                        <AppBarButton x:Name="enableBtn" Icon="Volume" Label="Enable selected" Tapped="enableBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
-                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                        
+                         <!--   <AppBarButton x:Name="enableBtn" Icon="Volume" Label="Enable selected" Tapped="enableBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" /> -->
                         
                         
 
                         <!--<TextBlock x:Name="Heading_view" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Right" Text="View"/>-->
-                                                
-                        <AppBarToggleButton x:Name="toggleNoProp" Icon="Add" Label="NoProp"  Checked="toggleNoProp_Checked" Unchecked="toggleNoProp_Unchecked"  Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
-                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
-                        <AppBarToggleButton x:Name="toggleNoBb2" Icon="Add" Label="NoNonGreen" Checked="toggleNoBb2_Checked" Unchecked="toggleNoBb2_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
-                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                                          
 
                             <TextBlock x:Name="Heading_filter" Margin="0,20,0,0" HorizontalAlignment="Center" TextAlignment="Right" Text="Filter"/>
-                            <AppBarButton x:Name="ResetFiltersBtn" Icon="Cancel" Label="Reset" Tapped="ResetFiltersBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
-                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
+                            
                             <AppBarToggleButton x:Name="myAcksBtn" Icon="Filter" Label="My acks" Checked="myAcks_Checked" Unchecked="myAcks_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                            
+                            <AppBarToggleButton x:Name="toggleNoProp" Icon="Add" Label="NoProp"  Checked="toggleNoProp_Checked" Unchecked="toggleNoProp_Unchecked"  Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
+                            <AppBarToggleButton x:Name="toggleNoBb2" Icon="Add" Label="NoNonGreen" Checked="toggleNoBb2_Checked" Unchecked="toggleNoBb2_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
                                           VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0"/>
                             <AppBarToggleButton x:Name="preDef1" Icon="Page" Label="preDef1" Checked="preDef1_Checked" Unchecked="preDef1_Unchecked" Width="192" Height="48" Style="{StaticResource AppBarToggleButtonLabelRight}" 
                                           VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" Visibility="Collapsed"/>
+                            <AppBarButton x:Name="ResetFiltersBtn" Icon="Cancel" Label="Reset" Tapped="ResetFiltersBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
+                                          VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
 
-                            
 
-
-                            <TextBlock x:Name="Heading_debug" Margin="0,20,0,0" HorizontalAlignment="Center"  TextAlignment="Right" Text="Debug"/>
+                            <TextBlock x:Name="Heading_debug" Margin="0,20,0,0" HorizontalAlignment="Center"  TextAlignment="Right" Text="Viewer"/>
                             <AppBarButton x:Name="RefreshSelectedBtn" Icon="Refresh" Label="Refresh selected" Tapped="RefreshSelectedBtn_Tapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
                                           VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0,0,0,0" />
                             <AppBarButton x:Name="CropBtn" Icon="Crop" Label="Crop selected" Tapped="CropBtn_Tapped" RightTapped="CropBtn_RightTapped"  Width="192" Height="48" Style="{StaticResource RightAlignAppBarButton}" 
@@ -843,8 +848,8 @@
                                 <StackPanel HorizontalAlignment="Right" Width="48">
                                     
                                     <AppBarButton x:Name="backBtn" Icon="Back" Label="" Margin="0,0,0,0" Width="48" Height="48" Tapped="backBtn_Tapped" RightTapped="backBtn_RightTapped"/>
-                                    <AppBarButton x:Name="SideStatus" Icon="ThreeBars" Label="Status" Margin="0,12,0,0" Width="48" Tapped="SideStatusBtn" RightTapped="SideStatusSecondary" DoubleTapped="SideStatusDbl" AccessKey="Q" AccessKeyInvoked="SideStatusBtn"/>
-                                    <AppBarButton x:Name="SideHistory" Icon="Calendar" Label="History" Width="48" Tapped="SideHistoryBtn" RightTapped="SideHistorySecondary" DoubleTapped="SideHistoryDbl" AccessKey="W" AccessKeyInvoked="SideHistoryBtn"/>
+                                    <AppBarButton x:Name="SideStatus" Icon="ThreeBars" Label="Status" Margin="0,12,0,0" Width="48" Tapped="SideStatusBtn" RightTapped="SideStatusSecondary"  AccessKey="Q" AccessKeyInvoked="SideStatusBtn"/>
+                                    <AppBarButton x:Name="SideHistory" Icon="Calendar" Label="History" Width="48" Tapped="SideHistoryBtn" RightTapped="SideHistorySecondary"  AccessKey="W" AccessKeyInvoked="SideHistoryBtn"/>
                                     <AppBarButton x:Name="docsBtn" Icon="Library" Label="Docs"  Width="48" Tapped="SideDocsBtn" RightTapped="SideDocsDbl" AccessKey="E" AccessKeyInvoked="SideDocsBtn"/>
                                     <AppBarButton x:Name="caseBtn" Icon="Attach" Label="Case" Width="48" Tapped="SideCaseBtn" RightTapped="SideCaseDbl" AccessKey="R" AccessKeyInvoked="SideCaseBtn"/>
                                     <AppBarButton x:Name="SideTest" Icon="Find" Label="Test"  Width="48" Tapped="SideTestBtn" RightTapped="SideTestDbl" AccessKey="T" AccessKeyInvoked="SideTestBtn"/>

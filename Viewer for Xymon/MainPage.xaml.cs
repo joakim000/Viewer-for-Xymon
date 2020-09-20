@@ -443,6 +443,11 @@ namespace Viewer_for_Xymon
 
         }
 
+        private void SideStatusDbl(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
+        }
+
         //private void ResetFiltersBtn_Tapped(object sender, TappedRoutedEventArgs e)
         //{
 
