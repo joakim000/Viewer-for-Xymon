@@ -107,6 +107,16 @@ namespace Viewer_for_Xymon
                     Debug.WriteLine("Found localsetting: createCaseWebPw");
                     Settings.createCaseWebPw = c.Values["createCaseWebPw"] as string;
                 }
+                if (c.Values.ContainsKey("caseWebUser"))
+                {
+                    Debug.WriteLine("Found localsetting: createCaseWebUser");
+                    Settings.createCaseWebUser = c.Values["createCaseWebUser"] as string;
+                }
+                if (c.Values.ContainsKey("caseWebPw"))
+                {
+                    Debug.WriteLine("Found localsetting: createCaseWebPw");
+                    Settings.createCaseWebPw = c.Values["createCaseWebPw"] as string;
+                }
                 if (c.Values.ContainsKey("showCaseWebUser"))
                 {
                     Debug.WriteLine("Found localsetting: showCaseWebUser");

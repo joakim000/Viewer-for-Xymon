@@ -564,10 +564,10 @@ namespace Viewer_for_Xymon
                     str += "caseResponseSuccess=\"" + Settings.caseResponseSuccess + "\"" + Environment.NewLine;
                     str += "caseResponseExists=\"" + Settings.caseResponseExists + "\"" + Environment.NewLine;
                     str += "caseResponseFailed=\"" + Settings.caseResponseFailed + "\"" + Environment.NewLine;
-                    //str += "caseWebUser=\"" + Settings.createCaseWebUser + "\"" + Environment.NewLine;
-                    //str += "caseWebPw=\"" + Settings.createCaseWebPw + "\"" + Environment.NewLine;
-                    //str += "showCaseWebUser=\"" + Settings.showCaseWebUser + "\"" + Environment.NewLine;
-                    //str += "showCaseWebPw=\"" + Settings.showCaseWebPw + "\"" + Environment.NewLine;
+                    str += "caseWebUser=\"" + Settings.createCaseWebUser + "\"" + Environment.NewLine;
+                    str += "caseWebPw=\"" + Settings.createCaseWebPw + "\"" + Environment.NewLine;
+                    str += "showCaseWebUser=\"" + Settings.showCaseWebUser + "\"" + Environment.NewLine;
+                    str += "showCaseWebPw=\"" + Settings.showCaseWebPw + "\"" + Environment.NewLine;
                     str += Environment.NewLine;
 
 
