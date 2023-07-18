@@ -257,13 +257,13 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="115"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxWidth="660">
+               
                     <Grid:RadDataGrid x:Name="descFiltersGrid" ItemsSource="{Binding Mode=TwoWay}" Grid.Row="0"
                                     Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGray"
                                     UserSortMode="Single" CanUserChooseColumns="False"  UserEditMode="Inline" UserFilterMode="Disabled" UserGroupMode="Disabled"
-                                     ColumnResizeHandleDisplayMode="None" ColumnDataOperationsMode="Inline"              
+                                     ColumnResizeHandleDisplayMode="None" ColumnDataOperationsMode="Flyout"              
                                      SelectionMode="Single" SelectionUnit="Row"               AutoGenerateColumns="False"
-                                    GridLinesVisibility="Horizontal" GridLinesBrush="DimGray" GridLinesThickness="1" Grid.ColumnSpan="2">
+                                    GridLinesVisibility="Horizontal" GridLinesBrush="DimGray" GridLinesThickness="1" MaxWidth="660">
 
                         <Grid:RadDataGrid.Resources>
                             <Style TargetType="gridPrimitives:SelectionRegionBorderControl">
@@ -288,7 +288,7 @@
                             <Grid:DataGridTextColumn PropertyName="pattern" Header="Pattern" SizeMode="Auto"  CanUserEdit="True"/>
                         </Grid:RadDataGrid.Columns>
                     </Grid:RadDataGrid>
-                </ScrollViewer>
+                
                 <Grid Grid.Row="1"  Margin="0,5,0,0"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
