@@ -13,10 +13,10 @@
     xmlns:RadControlPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:RadBusy="using:Telerik.UI.Xaml.Controls.Primitives.BusyIndicator"
     mc:Ignorable="d"
+    CloseButtonText="Cancel"
     PrimaryButtonText="Acknowledge"
-    SecondaryButtonText="Cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    CloseButtonClick="ContentDialog_SecondaryButtonClick">
 
     <Grid>
         <RadControlPrimitives:RadBusyIndicator x:Name="busyIndicator" Height="300" VerticalAlignment="Bottom" IsActive="False" AnimationStyle="AnimationStyle7" Visibility="Collapsed"  >
@@ -87,8 +87,8 @@
         <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
             <RadioButton x:Name="rb2" GroupName="ddRadio" Width="20"  Content="until" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
             <StackPanel>
-                <TimePicker x:Name="timepicker" Width="200" ClockIdentifier="24HourClock"  ></TimePicker>
-                <DatePicker x:Name="datepicker" Width="200" Margin="0,3,0,0"/>
+                <TimePicker x:Name="timepicker" ClockIdentifier="24HourClock"  />
+                    <DatePicker x:Name="datepicker" Margin="0,3,0,0"/>
             </StackPanel>
         </StackPanel>
         <!--<StackPanel Orientation="Horizontal">

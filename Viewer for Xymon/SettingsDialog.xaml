@@ -9,14 +9,17 @@
     xmlns:gridPrimitives="using:Telerik.UI.Xaml.Controls.Grid.Primitives"
     mc:Ignorable="d"
     PrimaryButtonText="Save"
-    SecondaryButtonText="Cancel"
+    CloseButtonText="Cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" HorizontalAlignment="Left"
+    CloseButtonClick="ContentDialog_SecondaryButtonClick" HorizontalAlignment="Left"
     >
     <!--Height="600"
     Width="900"-->
 
-
+    <ContentDialog.Resources>
+        <x:Double x:Key="ContentDialogMaxWidth">700</x:Double>
+        <x:Double x:Key="ContentDialogMaxHeight">800</x:Double> 
+    </ContentDialog.Resources>
 
     <Pivot x:Name="settingsPivot">
 
@@ -248,42 +251,44 @@
             </ScrollViewer>
         </PivotItem>
 
-        <PivotItem Header="Descriptions" Width="500" Height="600">
+        <PivotItem Header="Descriptions">
             <Grid MinWidth="100" MinHeight="100">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="115"/>
                 </Grid.RowDefinitions>
-                <Grid:RadDataGrid x:Name="descFiltersGrid" ItemsSource="{Binding Mode=TwoWay}" Grid.Row="0"
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxWidth="660">
+                    <Grid:RadDataGrid x:Name="descFiltersGrid" ItemsSource="{Binding Mode=TwoWay}" Grid.Row="0"
                                     Margin="0,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="LightGray"
                                     UserSortMode="Single" CanUserChooseColumns="False"  UserEditMode="Inline" UserFilterMode="Disabled" UserGroupMode="Disabled"
                                      ColumnResizeHandleDisplayMode="None" ColumnDataOperationsMode="Inline"              
                                      SelectionMode="Single" SelectionUnit="Row"               AutoGenerateColumns="False"
                                     GridLinesVisibility="Horizontal" GridLinesBrush="DimGray" GridLinesThickness="1" Grid.ColumnSpan="2">
 
-                    <Grid:RadDataGrid.Resources>
-                        <Style TargetType="gridPrimitives:SelectionRegionBorderControl">
-                            <Setter Property="BorderBrush" Value="#ff338fff"></Setter>
-                            <Setter Property="BorderThickness" Value="2"></Setter>
-                            <Setter Property="Opacity" Value="1"/>
-                        </Style>
-                        <Style TargetType="gridPrimitives:SelectionRegionBackgroundControl">
-                            <Setter Property="Opacity" Value="1"/>
-                        </Style>
-                        <Style TargetType="gridPrimitives:DataGridCurrencyControl">
-                            <Setter Property="Opacity" Value="0"/>
-                        </Style>
-                        <Style TargetType="Grid:RadDataGrid">
-                            <Setter Property="FontWeight" Value="Normal"/>
-                            <Setter Property="FontSize" Value="14"/>
-                        </Style>
+                        <Grid:RadDataGrid.Resources>
+                            <Style TargetType="gridPrimitives:SelectionRegionBorderControl">
+                                <Setter Property="BorderBrush" Value="#ff338fff"></Setter>
+                                <Setter Property="BorderThickness" Value="2"></Setter>
+                                <Setter Property="Opacity" Value="1"/>
+                            </Style>
+                            <Style TargetType="gridPrimitives:SelectionRegionBackgroundControl">
+                                <Setter Property="Opacity" Value="1"/>
+                            </Style>
+                            <Style TargetType="gridPrimitives:DataGridCurrencyControl">
+                                <Setter Property="Opacity" Value="0"/>
+                            </Style>
+                            <Style TargetType="Grid:RadDataGrid">
+                                <Setter Property="FontWeight" Value="Normal"/>
+                                <Setter Property="FontSize" Value="14"/>
+                            </Style>
 
-                    </Grid:RadDataGrid.Resources>
-                    <Grid:RadDataGrid.Columns>
-                        <Grid:DataGridTextColumn PropertyName="test"   Header="Test" SizeMode="Auto"   CanUserEdit="True"/>
-                        <Grid:DataGridTextColumn PropertyName="pattern" Header="Pattern" SizeMode="Stretch"   CanUserEdit="True"/>
-                    </Grid:RadDataGrid.Columns>
-                </Grid:RadDataGrid>
+                        </Grid:RadDataGrid.Resources>
+                        <Grid:RadDataGrid.Columns>
+                            <Grid:DataGridTextColumn PropertyName="test"   Header="Test" SizeMode="Auto"   CanUserEdit="True"/>
+                            <Grid:DataGridTextColumn PropertyName="pattern" Header="Pattern" SizeMode="Auto"  CanUserEdit="True"/>
+                        </Grid:RadDataGrid.Columns>
+                    </Grid:RadDataGrid>
+                </ScrollViewer>
                 <Grid Grid.Row="1"  Margin="0,5,0,0"  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>

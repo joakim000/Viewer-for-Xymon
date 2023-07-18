@@ -153,12 +153,12 @@ namespace Viewer_for_Xymon
         public static string SshAddr = "192.168.0.113";
         public static int SshPort = 22;
         public static string SshUser = "xymon";
-        public static string SshPw = "sqqfe";
+        public static string SshPw = "password";
 
         public static string GatewayAddr = "192.168.0.111";
         public static int GatewayPort = 22;
         public static string GatewayUser = "joakim";
-        public static string GatewayPw = "sdqfe";
+        public static string GatewayPw = "password";
 
         // These can be got from xymonserver.cfg
         public static string AlleventsPath = "/home/xymond02/data/hist/allevents";
