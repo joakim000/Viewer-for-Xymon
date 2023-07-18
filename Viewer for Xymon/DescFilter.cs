@@ -115,9 +115,10 @@ namespace Viewer_for_Xymon
             if (msg.Length > 0 && Settings.descFiltersDict.TryGetValue(test, out p))
             {
                 p = p.Replace("%COLOR%", c);             //if (test =="http") Debug.WriteLine("Pattern:"+p);
+                p = p.Replace("%ALLCOL%", "(red|yellow|green|clear)");
                 try
                 {
-                    var mColl = Regex.Matches(msg, p);          //if (test == "http") Debug.WriteLine("Matches:" + mColl.Count);
+                    var mColl = Regex.Matches(msg, p);  //if (test == "http") Debug.WriteLine("Matches:" + mColl.Count);
                     int mTotal = mColl.Count;
                     if (mColl.Count > 0)
                     {

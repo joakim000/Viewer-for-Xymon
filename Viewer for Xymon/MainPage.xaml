@@ -966,7 +966,7 @@
                                         <Grid:DataGridTextColumn PropertyName="testname"                        Header="Test" SizeMode="Auto" CellContentStyleSelector="{StaticResource FontSelector}" />
                                         <Grid:DataGridTextColumn x:Name="descriptionCol" PropertyName="description"          Header="Description" SizeMode="Stretch" Width="200"  CellContentStyleSelector="{StaticResource FontSelector}" />
                                         
-                                        <Grid:DataGridTextColumn PropertyName="pageroot"                        Header="Stakeholder" SizeMode="Auto"  CellContentStyleSelector="{StaticResource FontSelector}" />
+                                        <Grid:DataGridTextColumn PropertyName="pageroot"                        Header="Page" SizeMode="Auto"  CellContentStyleSelector="{StaticResource FontSelector}" />
                                         <Grid:DataGridTextColumn PropertyName="pagepath"                        Header="Path" SizeMode="Auto"  IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
                                         <Grid:DataGridTextColumn PropertyName="XMH_DGNAME"                      Header="Role" SizeMode="Auto"  IsVisible="False" CellContentStyleSelector="{StaticResource FontSelector}" />
 

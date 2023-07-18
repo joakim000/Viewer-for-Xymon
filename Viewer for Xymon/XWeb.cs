@@ -209,7 +209,7 @@ namespace Viewer_for_Xymon
                     case "%PAGEPATH%": val = f.XMH_PAGEPATHTITLE; break;
                     case "%ACKUSER%": val = f.ackuser; break;
                     case "%ACKMSG%": val = f.ackmsg; break;
-                    case "%STAKEHOLDER%": val = f.pageroot; break;
+                    case "%PAGE%": val = f.pageroot; break;
                     //f.lastchange_epoch
                     default: val = vp.val; break;
                 }
@@ -227,10 +227,8 @@ namespace Viewer_for_Xymon
                 var itemAsJson = JsonConvert.SerializeObject(postData);
                 query = new HttpStringContent(itemAsJson) as HttpStringContent;
                 query.Headers.ContentType = new HttpMediaTypeHeaderValue("application/json");
-                if (Settings.webUser == null || webUser == "")
-                    webUser = "xymon-webservice"; // Service Now
-                if (Settings.webUser == null || webUser == "")
-                    webPw = "kWDRw5NcAP-M4&$d"; // Service Now
+                //if (Settings.webUser == null || webUser == "")
+                //    return r;
             }
 
             try

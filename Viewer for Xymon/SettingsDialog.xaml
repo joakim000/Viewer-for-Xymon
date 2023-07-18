@@ -387,7 +387,7 @@
                             <TextBlock Text="%PAGEPATH%" Margin="0,0,0,0" FontSize="11"/>
                             <TextBlock Text="%ACKUSER%" Margin="0,0,0,0" FontSize="11"/>
                             <TextBlock Text="%ACKMSG%" Margin="0,0,0,0" FontSize="11"/>
-                            <TextBlock Text="%STAKEHOLDER%" Margin="0,0,-5,0" FontSize="11"/>
+                            <TextBlock Text="%PAGE%" Margin="0,0,-5,0" FontSize="11"/>
                         </VariableSizedWrapGrid>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Left">
                             <AppBarButton Label="New" Icon="NewFolder"   Tapped="NewCasePairBtn_Tapped" />
