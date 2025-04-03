@@ -1,7 +1,7 @@
 UWP frontend for live monitoring with Xymon Monitor in the style of Netcool or Netrac. Batch ack/disable events, sorting, filtering, history, etc. Inline web ticketing. 
 
 ### Compared to Xymon standard-gui
-<img src="vfx_comp.png" width="1040" height="390">
+<img src="vfx_comp_horiz.png" width="1040" height="390">
 
 | | VfX         | Xymon web interface |
 |---| ----------- | ----------- |
@@ -22,6 +22,6 @@ UWP frontend for live monitoring with Xymon Monitor in the style of Netcool or N
 
 <img src="vfx_docs.png" width="640" height="390">
 
-### Inline case handling
+### Inline ticketing
 
 <img src="vfx_case.png" width="640" height="390">
